@@ -25,11 +25,12 @@ class UsersController extends BaseController
 
 	public function getLogout() {
     Auth::logout();
-    return Redirect::to('users/login')->with('message', 'Your are now logged out!');
+    return Redirect::to('users/login')->with('message', 'Sesion cerrada correctamente.');
 }
 
 	public function getDashboard(){
-		$this->layout->content = View::make('users.dashboard');
+        $competitions = Competition::all();
+		$this->layout->content = View::make('users.dashboard',compact('competitions'));
 	}
 
 	public function getLogin(){

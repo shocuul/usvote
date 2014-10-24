@@ -60,11 +60,21 @@ class CompetitionsController extends HomeController{
         $competition->inscritos = $competition->inscritos + 1;
         $competition->save();
         $competition->students()->save($student);
-        $student->competitions()->attach($competition->id,array('votes'=>'50'));
+        //$student->competitions()->attach($competition->id,array('votes'=>'50'));
 
         return Redirect::route('competitions.manage',$idCompetition);
     }
 
+    public function vote($idStudent,$idCompetition){
+        $currentvotes = DB::table('competition_student')->where(array('competition_id'=>$idCompetition,'student_id'=>$idStudent))->increment('votes',1);
+        if($currentvotes){
+            return Redirect::to('users/dashboard')->with('message','Gracias por su voto');
+        }else{
+            return Redirect::to('users/dashboard')->with('message','Ah ocurrido un error');
+
+        }
+
+    }
     public function deletestudent($idCompetition,$idStudent){
         $competition = Competition::find($idCompetition);
         $student = Student::find($idStudent);

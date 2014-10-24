@@ -13,6 +13,7 @@
 
 Route::controller('users','UsersController');
 Route::get('/','UsersController@index');
+Route::get('vote/{idStudent}/{idCompetition}',array('as'=>'competitions.vote','uses'=>'CompetitionsController@vote'));
 Route::get('competitions/manage/{id}',array('as'=>'competitions.manage','uses'=>'CompetitionsController@manage'));
 Route::get('competitions/manage/{idCompetition}/student/{idStudent}',array('as'=>'competitions.addstudent','uses'=>'CompetitionsController@addstudent'));
 Route::get('competitions/manage/{idCompetition}/destroystudents/{idStudent}',array('as'=>'competitions.deletestudent','uses'=>'CompetitionsController@deletestudent'));
