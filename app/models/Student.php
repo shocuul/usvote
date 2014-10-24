@@ -14,6 +14,6 @@ class Student extends Eloquent{
     }
 
     public function competitions(){
-        return $this->belongsToMany('Competition');
+        return $this->belongsToMany('Competition')->withPivot('votes');
     }
 }

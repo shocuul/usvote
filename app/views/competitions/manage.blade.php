@@ -18,7 +18,7 @@
         @forelse($students as $student)
         <tr>
         <td>{{ $student->user->firstname ." ". $student->user->lastname }}</td>
-        <td>{{$student->matricula}}
+        <td>{{$student->user->matricula}}
         <td>{{$student->facultad }}</td>
         <td>{{ link_to_route('competitions.addstudent','Añadir Alumno',array($competition->id,$student->id),array('class'=>'btn btn-info')) }}
         </td>

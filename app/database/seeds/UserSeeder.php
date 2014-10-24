@@ -12,12 +12,16 @@ class UserSeeder extends DatabaseSeeder{
             'firstname'=>'Administrador',
             'lastname'=>'US',
             'email'=>'us@us.mx',
-            'password'=>Hash::make('online')
+            'password'=>Hash::make('online'),
+            'admin'=>true,
+            'matricula'=>"3333333333"
         ],[
             'firstname'=>'Jose David',
             'lastname'=>'Pacheco Valedo',
             'email'=>'shocuul@live.com',
-            'password'=>Hash::make('by45nt5k4n')
+            'password'=>Hash::make('by45nt5k4n'),
+            'admin'=>true,
+            'matricula'=>"1111111111"
         ]];
         foreach ($users as $user) {
             User::create($user);
@@ -28,10 +32,10 @@ class UserSeeder extends DatabaseSeeder{
             $user->firstname = $faker->firstName;
             $user->lastname = $faker->lastName;
             $user->email = $faker->email;
+            $user->matricula = $faker->randomNumber(8);
             $user->password = Hash::make($faker->userName);
             $user->save();
             $student = new Student;
-            $student->matricula = $faker->randomNumber(8);
             $student->facultad = $faker->city;
             $user->student()->save($student);
         }
@@ -41,10 +45,10 @@ class UserSeeder extends DatabaseSeeder{
             $user->firstname = $faker->firstName;
             $user->lastname = $faker->lastName;
             $user->email = $faker->email;
+            $user->matricula = $faker->randomNumber(8);
             $user->password = Hash::make($faker->userName);
             $user->save();
             $employee = new Employee;
-            $employee->matricula = $faker->randomNumber(8);
             $employee->cargo = $faker->company;
             $user->employee()->save($employee);
         }

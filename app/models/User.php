@@ -16,7 +16,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		'password'=>'required|alpha_num|between:6,12|confirmed',
 		'password_confirmation'=>'required|alpha_num|between:6,12',
         'matricula'=>'required|alpha_num|min:2',
-        'type_description'=>'required|alpha|min:2'
+        'type_description'=>'required|alpha_num'
 		);
 	/**
 	 * The database table used by the model.
@@ -35,6 +35,11 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
     public function employee(){
         return $this->hasOne('Employee');
+    }
+
+
+    public function isAdmin(){
+        return $this->admin;
     }
 
     public function student(){

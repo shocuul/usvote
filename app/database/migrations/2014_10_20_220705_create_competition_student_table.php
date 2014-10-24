@@ -18,6 +18,7 @@ class CreateCompetitionStudentTable extends Migration {
             $table->increments('id');
             $table->integer('competition_id');
             $table->integer('student_id');
+            $table->integer('votes');
             $table->timestamps();
 
 		});

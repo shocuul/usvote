@@ -16,7 +16,6 @@ class CreateStudentDataTable extends Migration {
 		{
 			$table->increments('id');
             $table->string('facultad');
-            $table->string('matricula');
             $table->string('user_id');
 			$table->timestamps();
 		});

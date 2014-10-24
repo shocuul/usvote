@@ -60,6 +60,8 @@ class CompetitionsController extends HomeController{
         $competition->inscritos = $competition->inscritos + 1;
         $competition->save();
         $competition->students()->save($student);
+        $student->competitions()->attach($competition->id,array('votes'=>'50'));
+
         return Redirect::route('competitions.manage',$idCompetition);
     }
 

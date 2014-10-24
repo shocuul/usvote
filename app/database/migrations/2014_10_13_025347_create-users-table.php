@@ -17,8 +17,10 @@ class CreateUsersTable extends Migration {
 			$table->increments('id');
 			$table->string('firstname',20);
 			$table->string('lastname',20);
+            $table->string('matricula')->unique();
 			$table->string('email',100)->unique();
 			$table->string('password',64);
+            $table->boolean('admin')->default(false);
             $table->string('remember_token',100)->nullable();
 			$table->timestamps();
 		});

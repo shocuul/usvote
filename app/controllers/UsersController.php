@@ -14,11 +14,11 @@ class UsersController extends BaseController
 	}
 
 	public function postSignin(){
-		if(Auth::attempt(array('email'=>Input::get('email'),'password'=>Input::get('password')))){
+		if(Auth::attempt(array('matricula'=>Input::get('matricula'),'password'=>Input::get('password')))){
 			return Redirect::to('users/dashboard')->with('message','You are now logged in!');
 		}else{
 			return Redirect::to('users/login')
-				->with('message','You username/password combination was incorrect')
+				->with('message','Su matricula y/o contraseña son incorrectas.')
 				->withInput();
 		}
 	}
@@ -56,22 +56,20 @@ class UsersController extends BaseController
 		    $user->firstname = Input::get('firstname');
 		    $user->lastname = Input::get('lastname');
 		    $user->email = Input::get('email');
+            $user->matricula = Input::get('matricula');
 		    $user->password = Hash::make(Input::get('password'));
             $user->save();
             if(Input::get('type')=='student'){
                 $student = new Student;
-                $student->matricula = Input::get('matricula');
                 $student->facultad = Input::get('type_description');
                 $user->student()->save($student);
+                return Redirect::to('users/students/')->with('message','Alumno creado correctamente');
             }else{
                 $employee = new Employee;
-                $employee->matricula = Input::get('matricula');
                 $employee->cargo = Input::get('type_description');
                 $user->employee()->save($employee);
+                return Redirect::to('users/employees/')->with('message','Docente creado correctamente');
             }
-
-
-    		return Redirect::to('users/')->with('message', 'Thanks for registering!');
 		} else {
 		    return Redirect::to('users/register')->with('message', 'Usted tiene los siguientes errores')->withErrors($validator)->withInput();
 		}

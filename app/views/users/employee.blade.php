@@ -15,7 +15,7 @@
         @forelse($employees as $employee)
         <tr>
         <td>{{$employee->user->firstname . " ". $employee->user->lastname}}</td>
-        <td>{{$employee->matricula}}</td>
+        <td>{{$employee->user->matricula}}</td>
         <td>{{$employee->cargo}}</td>
         <td>
         {{ HTML::link('users/','Ver Empleado',array('class'=>'btn btn-primary btn-sm','disabled'=>'disabled')) }}
@@ -29,6 +29,8 @@
 
         @endforelse
         </table>
+        <br/>
+        {{ HTML::link('users/register','Agregar Alumno',['class'=>'btn btn-primary btn-sm']) }}
         <br/>
          {{$employees->links();}}
     </div>

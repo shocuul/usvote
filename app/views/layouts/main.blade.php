@@ -13,10 +13,13 @@
         <header>
             <ul class="nav nav-pills pull-right">
                 @if(!Auth::check())
+                <li>{{HTML::link('/users/login','Iniciar Sesion')}}</li>
+                @else
+                @if((!Auth::user()->admin)==0)
                 <li>{{ HTML::link('/competitions','Eventos') }}</li>
                 <li>{{ HTML::link('/users/students','Estudiantes') }}</li>
                 <li>{{ HTML::link('/users/employees','Docentes') }}</li>
-                @else
+                @endif
                 <li>{{ HTML::link('users/logout','Logout') }}</li>
                 @endif
             </ul>
@@ -29,13 +32,19 @@
 
         <div class="jumbotron">
          @if(Session::has('message'))
-            <p class="alert">{{ Session::get('message') }}</p>
+         <div class="alert alert-success" role="alert">
+         <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+         {{ Session::get('message') }}</div>
          @endif
-
+        <script>
+        $(".alert").alert();
+        </script>
          {{ $content }}
         </div>
 
 
 	</div><!-- /container -->
+	{{ HTML::script('js/jquery-1.11.1.min.js') }}
+	{{ HTML::script('js/bootstrap.min.js') }}
 	</body>
 </html>

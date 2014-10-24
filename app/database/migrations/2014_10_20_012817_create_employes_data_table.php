@@ -16,7 +16,6 @@ class CreateEmployesDataTable extends Migration {
 		{
 			$table->increments('id');
             $table->string('cargo');
-            $table->string('matricula');
             $table->string('user_id');
 			$table->timestamps();
 		});

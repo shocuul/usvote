@@ -15,7 +15,7 @@
         @forelse($students as $student)
         <tr>
         <td>{{ $student->user->firstname ." ". $student->user->lastname }}</td>
-        <td>{{$student->matricula}}
+        <td>{{$student->user->matricula}}
         <td>{{$student->facultad }}</td>
         <td>{{ HTML::link('users/{$student->id}','Ver Alumno',array('class'=>'btn btn-primary btn-sm','disabled'=>'disabled')) }}
         {{ HTML::link('users/{$student->id}/edit','Editar Alumno',array('class'=>'btn btn-primary btn-sm','disabled'=>'disabled')) }}
