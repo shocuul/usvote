@@ -13,6 +13,10 @@ class UsersController extends BaseController
 		$this->layout->content = View::make('users.register');
 	}
 
+    /*
+     * Login del usuario
+     *
+     */
 	public function postSignin(){
 		if(Auth::attempt(array('matricula'=>Input::get('matricula'),'password'=>Input::get('password')))){
 			return Redirect::to('users/dashboard')->with('message','You are now logged in!');
@@ -23,19 +27,40 @@ class UsersController extends BaseController
 		}
 	}
 
-	public function getLogout() {
-    Auth::logout();
-    return Redirect::to('users/login')->with('message', 'Sesion cerrada correctamente.');
-}
+    public function getLogout() {
+        Auth::logout();
+        return Redirect::to('users/login')->with('message', 'Sesion cerrada correctamente.');
+    }
+
+    public function getLogin(){
+        $this->layout->content = View::make('users.login');
+    }
+
+
+    /*
+     * Simple CRUD Users
+     */
+
+    public function index(){
+
+        $this->layout->content = View::make('users.index',['students'=>Student::paginate(15),'employees'=>Employee::paginate(15)]);
+    }
+
+    public function show($id){
+        $student = Student::find($id);
+        if(is_null($student)){
+            return Redirect::route('students.index');
+        }
+        $this->layout->content = View::make('users.show');
+    }
+
 
 	public function getDashboard(){
         $competitions = Competition::all();
 		$this->layout->content = View::make('users.dashboard',compact('competitions'));
 	}
 
-	public function getLogin(){
-		$this->layout->content = View::make('users.login');
-	}
+
 
     public function getStudents(){
         $this->layout->content = View::make('users.student',['students'=>Student::paginate(15)]);
@@ -45,10 +70,7 @@ class UsersController extends BaseController
         $this->layout->content = View::make('users.employee',['employees'=>Employee::paginate(15)]);
     }
 
-    public function index(){
 
-        $this->layout->content = View::make('users.index',['students'=>Student::paginate(15),'employees'=>Employee::paginate(15)]);
-    }
 
 	public function postCreate(){
 		$validator = Validator::make(Input::all(), User::$rules);

@@ -4,6 +4,10 @@ class CompetitionsController extends HomeController{
 
     protected $layout = "layouts.main";
 
+    /*
+    Simple CRUD Competition
+    */
+
     public function index(){
         $this->layout->content = View::make('competitions.index',['competitions'=>Competition::all()]);
     }
@@ -68,7 +72,8 @@ class CompetitionsController extends HomeController{
     public function vote($idStudent,$idCompetition){
         $currentvotes = DB::table('competition_student')->where(array('competition_id'=>$idCompetition,'student_id'=>$idStudent))->increment('votes',1);
         if($currentvotes){
-            return Redirect::to('users/dashboard')->with('message','Gracias por su voto');
+            Auth::logout();
+            return Redirect::to('/')->with('message', 'Gracias por su voto');
         }else{
             return Redirect::to('users/dashboard')->with('message','Ah ocurrido un error');
 
