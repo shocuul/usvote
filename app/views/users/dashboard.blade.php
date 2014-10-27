@@ -16,7 +16,7 @@
             <h4>Edad: <span class="label label-primary">{{$student->edad}}</span></h4>
             <p>{{$student->descripcion}}</p>
             <p></p>
-            {{link_to_route('competitions.vote','Votar',array($student->id,$competition->id),array('class'=>'btn btn-primary'))}}
+            {{link_to_route('competitions.vote','Votar',array($student->id,$competition->id),array('class'=>'btn btn-primary',))}}
             </div>
         </div>
         </div>

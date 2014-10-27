@@ -27,4 +27,9 @@ class Competition extends Eloquent{
     public function students(){
         return $this->belongsToMany('Student')->withPivot('votes');;
     }
+
+    public function winner()
+    {
+        return $this->belongsToMany('Student')->withPivot('votes')->orderBy('votes','des')->take(3);;
+    }
 }

@@ -21,6 +21,7 @@
                 <li>{{ HTML::link('/users/employees','Docentes') }}</li>
                 @endif
                 <li>{{HTML::link('/users/dashboard','Votacion')}}</li>
+                <li>{{HTML::link('/resultados','Resultados')}}</li>
                 <li>{{ HTML::link('users/logout','Logout') }}</li>
                 @endif
             </ul>

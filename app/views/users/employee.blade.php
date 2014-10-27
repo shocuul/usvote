@@ -18,9 +18,11 @@
         <td>{{$employee->user->matricula}}</td>
         <td>{{$employee->cargo}}</td>
         <td>
-        {{ HTML::link('users/','Ver Empleado',array('class'=>'btn btn-primary btn-sm','disabled'=>'disabled')) }}
-        {{ HTML::link('users/{$student->id}/edit','Editar Empleado',array('class'=>'btn btn-primary btn-sm','disabled'=>'disabled')) }}
-        {{ HTML::link('users/{$student->id}','Eliminar Empleado',array('class'=>'btn btn-danger btn-sm','disabled'=>'disabled')) }}
+        {{ HTML::link('users/mostrar/'.$employee->user->id,'Ver Docente',array('class'=>'btn btn-primary btn-sm')) }}
+        {{ HTML::link('users/edit/'.$employee->user->id,'Editar Docente',array('class'=>'btn btn-primary btn-sm')) }}
+        {{Form::open(array('method'=>'DELETE','route'=>array('users.delete',$employee->user->id),'style'=>'display:inline-block;'))}}
+        {{Form::submit('Borrar Docente',array('class'=>'btn btn-danger'))}}
+        {{Form::close()}}
         </td>
         </tr>
 

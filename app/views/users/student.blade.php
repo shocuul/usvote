@@ -14,12 +14,15 @@
         </tr>
         @forelse($students as $student)
         <tr>
-        <td>{{ $student->user->firstname ." ". $student->user->lastname }}</td>
-        <td>{{$student->user->matricula}}
+        <td>{{$student->user->firstname ." ". $student->user->lastname }}</td>
+        <td>{{$student->user->matricula}}</td>
         <td>{{$student->facultad }}</td>
-        <td>{{ HTML::link('users/{$student->id}','Ver Alumno',array('class'=>'btn btn-primary btn-sm','disabled'=>'disabled')) }}
-        {{ HTML::link('users/{$student->id}/edit','Editar Alumno',array('class'=>'btn btn-primary btn-sm','disabled'=>'disabled')) }}
-        {{ HTML::link('users/{$student->id}','Eliminar Alumno',array('class'=>'btn btn-danger btn-sm','disabled'=>'disabled')) }}</td>
+        <td>{{ HTML::link('users/mostrar/'.$student->user->id,'Ver Alumno',array('class'=>'btn btn-primary btn-sm')) }}
+        {{ HTML::link('users/edit/'.$student->user->id,'Editar Alumno',array('class'=>'btn btn-primary btn-sm')) }}
+        {{Form::open(array('method'=>'DELETE','route'=>array('users.delete',$student->user->id),'style'=>'display:inline-block;'))}}
+        {{Form::submit('Borrar Alumno',array('class'=>'btn btn-danger'))}}
+        {{Form::close()}}
+        </td>
         </tr>
 
         @empty

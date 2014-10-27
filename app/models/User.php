@@ -31,6 +31,16 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 *
 	 * @var array
 	 */
+    public function delete()
+    {
+        if(is_null($this->student)){
+            $this->employee()->delete();
+        }else{
+            $this->student()->delete();
+        }
+        return parent::delete();
+    }
+
 	protected $hidden = array('password', 'remember_token');
 
     public function employee(){
