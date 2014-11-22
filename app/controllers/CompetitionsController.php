@@ -16,6 +16,7 @@ class CompetitionsController extends HomeController{
         $this->layout->content = View::make('competitions.create');
     }
 
+
     public function store(){
         $input = Input::all();
         $validator = Validator::make($input, Competition::$rules);
@@ -111,6 +112,17 @@ class CompetitionsController extends HomeController{
         $competitions = Competition::all();
         $lugares = 1;
         $this->layout->content = View::make('competitions.result',compact('competitions','lugares'));
+    }
+
+    public function adminresultados(){
+
+        $competencia = Competition::first()->fecha_final;
+
+        $hoy = date("Y-m-d");
+
+        $finalizado = Competition::finalizado()->get();
+
+        $this->layout->content = View::make('competitions.adminresult',compact('competencia','hoy','finalizado'));
     }
 
     /**

@@ -14,6 +14,7 @@
 
 Route::get('/','UsersController@index');
 Route::get('resultados/',array('as'=>'competitions.resultados','uses'=>'CompetitionsController@resultados'));
+Route::get('admin-resultados/',array('as'=>'competitions.adminresultados','uses'=>'CompetitionsController@adminresultados'));
 Route::get('users/show/{id}',array('as'=>'users.show','uses'=>'UsersController@show'));
 Route::match(array('DELETE'),'users/delete/{id}',array('as'=>'users.delete','uses'=>'UsersController@borrar'));
 Route::get('vote/{idStudent}/{idCompetition}',array('as'=>'competitions.vote','uses'=>'CompetitionsController@vote'));

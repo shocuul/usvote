@@ -8,6 +8,7 @@
 		<title>Votacion Sotavento</title>
 	</head>
 	<body>
+    {{ HTML::script('js/flotr2.min.js')}}
 	<div class="container">
 
         <header>

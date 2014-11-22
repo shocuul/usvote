@@ -24,6 +24,10 @@ class Competition extends Eloquent{
         'fecha_final'=>'required'
     );
 
+    public function scopeFinalizado($query){
+        return $query->where('fecha_final','<',date("Y-m-d"));
+    }
+
     public function students(){
         return $this->belongsToMany('Student')->withPivot('votes');;
     }
