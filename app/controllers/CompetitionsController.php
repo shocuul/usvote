@@ -118,11 +118,11 @@ class CompetitionsController extends HomeController{
 
         $competencia = Competition::first()->fecha_final;
 
-        $hoy = date("Y-m-d");
+        $jshelper = 1;
 
         $finalizado = Competition::finalizado()->get();
 
-        $this->layout->content = View::make('competitions.adminresult',compact('competencia','hoy','finalizado'));
+        $this->layout->content = View::make('competitions.adminresult',compact('competencia','jshelper','finalizado'));
     }
 
     /**
