@@ -6,7 +6,7 @@ class UsersController extends BaseController
 {
 	public function __construct(){
 		$this->beforeFilter('csrf',array('on'=>'post'));
-		$this->beforeFilter('auth',array('only'=>array('getDashboard')));
+		$this->beforeFilter('auth',array('except'=>array('getLogin','postSignin')));
 	}
 	protected $layout = "layouts.main";
 	public function getRegister(){
