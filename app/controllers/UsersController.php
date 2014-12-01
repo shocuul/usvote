@@ -6,7 +6,7 @@ class UsersController extends BaseController
 {
 	public function __construct(){
 		$this->beforeFilter('csrf',array('on'=>'post'));
-		$this->beforeFilter('auth',array('except'=>array('getLogin','postSignin')));
+		$this->beforeFilter('auth',array('except'=>array('getLogin','postSignin','index')));
 	}
 	protected $layout = "layouts.main";
 	public function getRegister(){
@@ -134,7 +134,7 @@ class UsersController extends BaseController
      *Pantalla de votacion
      */
     public function getDashboard(){
-        $competitions = Competition::all();
+        $competitions = Competition::where('fecha_inicio','<',date("Y-m-d"))->where('fecha_final','>',date("Y-m-d"))->get();
 		$this->layout->content = View::make('users.dashboard',compact('competitions'));
 	}
 

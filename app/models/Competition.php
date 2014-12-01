@@ -28,6 +28,15 @@ class Competition extends Eloquent{
         return $query->where('fecha_final','<',date("Y-m-d"));
     }
 
+    public function scopeNoDisponible($query){
+        return $query->where('fecha_inicio','<',date("Y-m-d"));
+    }
+
+    public function scopeCurrent($query){
+        with(clone $query)->where('fecha_final','<',date("Y-m-d"));
+        with(clone $query)->where('fecha_inicio','>',date("Y-m-d"));
+    }
+
     public function students(){
         return $this->belongsToMany('Student')->withPivot('votes');;
     }

@@ -43,7 +43,7 @@ Route::filter('auth', function()
 		}
 		else
 		{
-			return Redirect::guest('users/login');
+			return Redirect::guest('users/login')->with('message','No tienes permiso de hacer eso favor de iniciar sesion');;
 		}
 	}
 });

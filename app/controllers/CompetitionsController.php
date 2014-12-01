@@ -109,7 +109,7 @@ class CompetitionsController extends HomeController{
      */
     public function resultados()
     {
-        $competitions = Competition::all();
+        $competitions = Competition::finalizado()->get();
         $lugares = 1;
         $this->layout->content = View::make('competitions.result',compact('competitions','lugares'));
     }
